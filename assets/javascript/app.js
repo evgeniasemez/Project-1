@@ -90,3 +90,104 @@ $(document).ready(function () {
     });
 });
 
+// var domainStr = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?"
+// var mashupKey = "mashape-key=68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
+
+// var domainWIthKey = domainStr + mashupKey;
+
+// var cuisine = "cuisine=french"
+// var limitLicence = "limitLicence=true"
+// var searchNumber = "number=10"
+
+// var apiString = `${domainWithKey}&${cuisine}&${limitLicence}&${searchNumber}`
+
+
+// function searchRecipes() {
+//     // VARIABLE TO STORE USER RECIPE
+//     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=16&query=goulash"
+
+//     console.log(queryUrl)
+
+//     $.ajax({
+//         url: queryUrl,
+//         method: "GET",
+//         headers: {
+//             "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+//             "X-RapidAPI-Key": "68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
+//         },
+//         success: function (response) {
+
+//             console.log(response);
+//             for (var i = 0; i < response.results.length; i++) {
+//                 var searchRecipes = response.results[i].title;
+//                 var recipeImage = response.results[i].image;
+//                 var recipeCookTime = response.results[i].readyInMinutes;
+//                 var recipeServings = response.results[i].servings;
+//             }
+//         },
+//         error: function (result) {
+
+//         }
+//     })
+// }
+
+// function searchIngredients() {
+//     // VARIABLE TO STORE USER INGREDIENTS
+//     var queryUrl =  "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=16&ranking=1&ignorePantry=true&ingredients=cheese" 
+    
+//     console.log(queryUrl)
+
+//     $.ajax({
+//         url: queryUrl,
+//         method: "GET",
+//         headers: {
+//             "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+//             "X-RapidAPI-Key": "68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
+//         },
+//         success: function (response) {
+
+          
+//             console.log(response);
+//             for (var i = 0; i < response.length; i++) {
+//                 var ingredientsRecipes = response[i].title;
+//                 var numberIngredientsMissed = response[i].missedIngredientCount;
+//                 // console.log(ingredientsRecipes)
+//                 var ingredientsImage = response[i].image;
+//                 for (var j = 0; j < response[i].missedIngredients.length; j++) {
+//                     var ingredientsMissing = response[i].missedIngredients[j].name;
+//                     // console.log(ingredientsMissing)
+//                 }
+//                 for( var h = 0; h < response[i].missedIngredients.length; h++) {
+//                     var ingredientAisle = response[i].missedIngredients[h].aisle;
+//                     // console.log(ingredientAisle)
+//                 }
+//             }
+//         },
+//         error: function (result) {
+
+//         }
+//     })
+// }
+
+// function mealPlan() {
+//     // VARIABLES FOR USER MEAL PLAN INPUT
+//     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=week&targetCalories=2000&diet=&exclude="
+
+//     $.ajax({
+//         url: queryUrl,
+//         method: "GET",
+//         headers: {
+//             "X-RapidAPI-Host":"spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+//             "X-RapidAPI-Key": "68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
+//         },
+//         success: function(response) {
+//             console.log(response);
+//         }
+//     })
+// }
+
+// searchRecipes();
+// searchIngredients();
+// mealPlan();
+
+
