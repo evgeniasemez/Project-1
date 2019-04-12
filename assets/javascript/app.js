@@ -13,15 +13,12 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var userSignIn = "/userSignIn";
-// database.ref(userSignIn).child("Lucy").set({
-//     userName: "lucy@gmail.com",
-//     userPassword: "password1",
+database.ref(userSignIn).child("Evgenia").set({
+    userName: "Evgenia",
+    userPassword: "Test1234",
+});
 // });
-// database.ref(userSignIn).push({
-//     userName: exampleInputEmail1,
-//     userPassword: exampleInputPassword1,
-// });
-// step 1: read the users output. Step 2: check database. 
+// Step 2: check database. 
 // Step 3: if they are - return the users name, change sign in button to users name. Load users data.
 //  Step 4: if not - empty inputs.
 
@@ -57,12 +54,37 @@ $(document).ready(function () {
         displayAnimalInfo();
     });
 
-    $("#submitButton").on("click", function (event) {
+    $("#submitButtonEmail").on("click", function (event) {
         var userName = $("#exampleInputEmail1").val().trim();
-        var userPssword = $("#exampleInputPassword1").val().trim();
+        var userPassword = $("#exampleInputPassword1").val().trim();
         // TODO: put validation
-        firebase.database.ref(userSignIn);
-        var userNameRef = database.ref(userSignIn);
+        var user = database.ref(userSignIn);
+        var name = user.child(userName);
+        // Step 2: check database. 
+        // Step 3: if they are - return the users name, change sign in button to users name. Load users data.
+        //  Step 4: if not - empty inputs.
+        name.once("value", function (data) {
+            console.log(data);
+            if (!data.exists()) {
+                console.log("null name");
+                $("#exampleInputPassword1").val("");
+                $("#exampleInputEmail1").val("");
+                return;
+            }
+            console.log(userPassword, data.val().userPassword);
+
+            if (userPassword !== data.val().userPassword) {
+                $("#exampleInputPassword1").val("");
+            }
+            else {
+                $("#loginModal").modal("hide");
+                $("#exampleInputPassword1").val("");
+                $("#exampleInputEmail1").val("");
+            }
+            $("#signInButton").hide();
+            $("#helloName").show();
+            $("helloUserName").text(userName);
+        });
 
 
     });

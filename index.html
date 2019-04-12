@@ -14,8 +14,6 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <!-- linking moment -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -37,7 +35,10 @@
         </div>
 
         <div class="pull-right loginbutton">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">Sign In</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal" id="signInButton">Sign In</button>
+            <div id= "helloName">
+                <h5>Hello, <span id="helloUserName">Evgenia</span></h5>
+            </div>
         </div>
     </nav>
 
@@ -54,8 +55,8 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <input type="email" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Enter email">
+                            <input type="text" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Enter User's Name">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
@@ -64,7 +65,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-success" id="submitButtonEmail">Submit</button>
                 </div>
             </div>
         </div>
