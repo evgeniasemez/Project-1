@@ -33,7 +33,7 @@ $(document).ready(function () {
         console.log(maxCalories);
 
 
-        function displayAnimalInfo() {
+        function display() {
             //  setting an API url
             var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients?maxCalories=" + maxCalories;
             console.log(queryURL);
@@ -51,7 +51,7 @@ $(document).ready(function () {
                 console.log(response);
             });
         }
-        displayAnimalInfo();
+        display();
     });
 
     $("#submitButtonEmail").on("click", function (event) {

@@ -14,6 +14,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <!-- linking moment -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -28,15 +29,16 @@
             <form class="form-inline my-2 my-lg-0 ingred-search" style="float:left">
                 <input class="form-control mr-sm-2" type="search" placeholder="Ingredients" aria-label="Search">
             </form>
-            <form class="form-inline my-2 my-lg-0 calorie-search" id = "caloriesSearch" style="float:left">
-                <input class="form-control mr-sm-2" id = "caloriesInput" type="search" placeholder="Calories" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0 calorie-search" id="caloriesSearch" style="float:left">
+                <input class="form-control mr-sm-2" id="caloriesInput" type="search" placeholder="Calories" aria-label="Search">
             </form>
             <button type="button" class="btn btn-success search" id="buttonSearch">Search</button>
         </div>
 
         <div class="pull-right loginbutton">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal" id="signInButton">Sign In</button>
-            <div id= "helloName">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal" id="signInButton">Sign
+                In</button>
+            <div id="helloName">
                 <h5>Hello, <span id="helloUserName">Evgenia</span></h5>
             </div>
         </div>
