@@ -1,0 +1,29 @@
+.recipes {
+    margin: 0px;
+    justify-content: center;
+}
+
+.card {
+    margin: 0px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.savedRecipe {
+    border: 1px solid lightgray; 
+} 
+
+.draggableCards {
+    margin: 0 -10px 0 -10px;
+}
+
+
+.row {
+    margin-bottom: 50px;
+}
+
+.breakfast{
+    
+}
