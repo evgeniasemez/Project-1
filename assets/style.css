@@ -1,3 +1,9 @@
 #helloName{
     display: none;
 }
+.midcaro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}

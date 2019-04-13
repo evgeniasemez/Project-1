@@ -28,14 +28,39 @@ database.ref(userSignIn).child("Evgenia").set({
 
 $(document).ready(function () {
     var maxCalories;
+    var recipestitleQuery;
+    var includeIngredients;
+    var caloriesQueryParam;
+    var recipesQueryParam;
+    var ingredienceQueryParam;
     $("#buttonSearch").on("click", function () {
         maxCalories = $("#caloriesInput").val().trim();
-        console.log(maxCalories);
+        recipestitleQuery = $("#recipesSearch").val().trim();
+        includeIngredients = $("#ingredientsSearch").val().trim();
+        console.log(maxCalories, recipestitleQuery);
 
+        if (maxCalories !== "") {
+            caloriesQueryParam = "maxCalories=" + maxCalories;
+        }
+        else {
+            caloriesQueryParam = "";
+        }
+        if (recipestitleQuery !== "") {
+            recipesQueryParam = "&query=" + recipestitleQuery;
+        }
+        else {
+            recipesQueryParam = "";
+        }
+        if (includeIngredients !== "") {
+            ingredienceQueryParam = "&includeIngredients=" + includeIngredients;
+        }
+        else {
+            ingredienceQueryParam = "";
+        }
 
         function display() {
             //  setting an API url
-            var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients?maxCalories=" + maxCalories;
+            var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?" + caloriesQueryParam + recipesQueryParam + ingredienceQueryParam;
             console.log(queryURL);
 
 
@@ -49,6 +74,17 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
+                // var title = response.results[0].title;
+                // var imgURL = response.results[0].image;
+                // var image = $("<img>").attr("src", imgURL);
+                for (var i = 0; i < 10; i++) {
+                    console.log("inside loop")
+                    // var title = response.results[i].title;
+                    var imgURL = response.results[i].image;
+                    console.log(imgURL)
+                    $(`#carousel${i}`).attr("src", imgURL);
+                    console.log("'#carousel" + i + "'");
+                }
             });
         }
         display();
@@ -134,7 +170,7 @@ $(document).ready(function () {
 // function searchIngredients() {
 //     // VARIABLE TO STORE USER INGREDIENTS
 //     var queryUrl =  "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=16&ranking=1&ignorePantry=true&ingredients=cheese" 
-    
+
 //     console.log(queryUrl)
 
 //     $.ajax({
@@ -146,7 +182,7 @@ $(document).ready(function () {
 //         },
 //         success: function (response) {
 
-          
+
 //             console.log(response);
 //             for (var i = 0; i < response.length; i++) {
 //                 var ingredientsRecipes = response[i].title;
