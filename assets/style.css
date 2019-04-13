@@ -1,9 +1,52 @@
 #helloName{
     display: none;
 }
+
+
+.display-4 {
+    text-align: center;
+}
+
+.search-bars {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 auto;
+}
 .midcaro {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: space-around;
+}
+
+.jumbotron {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    background: none !important;
+}
+
+.testvh {
+    height: 100vh;
+    background-image: url(./images/background.jpg)
+}
+
+#recipieArea {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bd-example {
+    margin: 5px;
+}
+
+.card-fill {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    margin: 5px;
 }
