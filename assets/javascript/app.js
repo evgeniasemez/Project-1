@@ -33,20 +33,24 @@ $(document).ready(function () {
     var caloriesQueryParam;
     var recipesQueryParam;
     var ingredienceQueryParam;
+
+    $("#recipesSearch").val("");
+    $("#ingredientsSearch").val("");
+    $("#caloriesInput").val("");
+
     $("#buttonSearch").on("click", function () {
         maxCalories = $("#caloriesInput").val().trim();
         recipestitleQuery = $("#recipesSearch").val().trim();
         includeIngredients = $("#ingredientsSearch").val().trim();
-        console.log(maxCalories, recipestitleQuery);
 
         if (maxCalories !== "") {
-            caloriesQueryParam = "maxCalories=" + maxCalories;
+            caloriesQueryParam = "&maxCalories=" + maxCalories;
         }
         else {
             caloriesQueryParam = "";
         }
         if (recipestitleQuery !== "") {
-            recipesQueryParam = "&query=" + recipestitleQuery;
+            recipesQueryParam = "query=" + recipestitleQuery;
         }
         else {
             recipesQueryParam = "";
@@ -60,7 +64,7 @@ $(document).ready(function () {
 
         function display() {
             //  setting an API url
-            var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?" + caloriesQueryParam + recipesQueryParam + ingredienceQueryParam;
+            var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?" + recipesQueryParam + caloriesQueryParam + ingredienceQueryParam;
             console.log(queryURL);
 
 
@@ -74,17 +78,47 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
-                // var title = response.results[0].title;
-                // var imgURL = response.results[0].image;
-                // var image = $("<img>").attr("src", imgURL);
-                for (var i = 0; i < 10; i++) {
-                    console.log("inside loop")
+                // 1. clear all the carousel
+                // 2. looking how many images we have
+                // 3. put the images in the slideshow
+                // 4. i always want at least 10 images, if  i don't have 10 results, i want to keep some the previous going with the new ones
+                // if i get more than 10 - i want to add them 
+
+                // assume we have recipes to return
+                // or loop through 9 images i<10, because the carousel has 9 cards
+                for (var i = 0; i < response.results.length; i++) {
+                    $(`#carousel${i}`).val("");
                     // var title = response.results[i].title;
                     var imgURL = response.results[i].image;
-                    console.log(imgURL)
                     $(`#carousel${i}`).attr("src", imgURL);
-                    console.log("'#carousel" + i + "'");
+
+
                 }
+
+                // second way of doing a carousel 
+                // $("#firstCarousel").empty();
+                // $("#recipesSearch").val("");
+                // $("#ingredientsSearch").val("");
+                // $("#caloriesInput").val("");
+                // for (var i = 0; i < response.results.length; i++) {
+                //     // $(`#carousel${i}`).val("");
+                //     // // var title = response.results[i].title;
+                //     var imgURL = response.results[i].image;
+                //     console.log(imgURL);
+                //     // $(`#carousel${i}`).attr("src", imgURL);
+                //     // if this the first thing in the loop add class active
+                //     var carouselItem = $("<div>");
+                //     if(i === 0){
+                //         carouselItem.attr("class", "active");
+                //     }
+                //     // var carouselItem = $("<div>");
+                //     carouselItem.attr("class", "carousel-item");
+                //     var image = $("<img>");
+                //     image.attr("src", imgURL);
+                //     carouselItem.append(image);
+                //     $("#firstCarousel").append(carouselItem);
+                // }
+
             });
         }
         display();
@@ -96,9 +130,7 @@ $(document).ready(function () {
         // TODO: put validation
         var user = database.ref(userSignIn);
         var name = user.child(userName);
-        // Step 2: check database. 
-        // Step 3: if they are - return the users name, change sign in button to users name. Load users data.
-        //  Step 4: if not - empty inputs.
+
         name.once("value", function (data) {
             console.log(data);
             if (!data.exists()) {
