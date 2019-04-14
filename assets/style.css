@@ -1,7 +1,10 @@
-#helloName{
+#helloName {
     display: none;
 }
 
+.navbar {
+    background-color: white !important;
+}
 
 .display-4 {
     text-align: center;
@@ -13,23 +16,18 @@
     flex-direction: row;
     margin: 0 auto;
 }
-.midcaro {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: space-around;
-}
 
 .jumbotron {
     position: absolute;
-    top: 25%;
+    top: 40%;
     width: 100%;
     background: none !important;
 }
 
 .testvh {
     height: 100vh;
-    background-image: url(./images/background.jpg)
+    background-image: url(./images/background.jpeg);
+    background-size: cover;
 }
 
 #recipieArea {
@@ -43,10 +41,26 @@
     margin: 5px;
 }
 
-.card-fill {
+.scroll-view {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    margin: 0 auto;
+}
+
+.not-used {
     margin: 5px;
+}
+
+.card-fill {
+    opacity: 0;
+}
+
+.footer {
+    padding: 10px;
+    background-color: lightgrey;
+    text-align: center;
+}
+
+i {
+    padding: 5px;
+    border-right: 1px solid black;
 }
