@@ -1,6 +1,10 @@
 #helloName {
     display: none;
 }
+#signOut {
+    padding-left: 10px;
+    color: #0056b3;
+}
 
 .navbar {
     background-color: white !important;
