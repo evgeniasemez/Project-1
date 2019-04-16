@@ -17,16 +17,9 @@ database.ref(userSignIn).child("Evgenia").set({
     userName: "Evgenia",
     userPassword: "Test1234",
 });
-// });
-// Step 2: check database. 
-// Step 3: if they are - return the users name, change sign in button to users name. Load users data.
-//  Step 4: if not - empty inputs.
 
 
-
-
-
-$(document).ready(function() {
+$(document).ready(function () {
     var maxCalories;
     var recipestitleQuery;
     var includeIngredients;
@@ -38,7 +31,7 @@ $(document).ready(function() {
     $("#ingredientsSearch").val("");
     $("#caloriesInput").val("");
 
-    $("#buttonSearch").on("click", function() {
+    $("#buttonSearch").on("click", function () {
         maxCalories = $("#caloriesInput").val().trim();
         recipestitleQuery = $("#recipesSearch").val().trim();
         includeIngredients = $("#ingredientsSearch").val().trim();
@@ -73,7 +66,7 @@ $(document).ready(function() {
                     "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
                     "X-RapidAPI-Key": "0a1b13432cmshb515af5d16ebe56p13fee7jsn5cd90584b6e3",
                 }
-            }).then(function(response) {
+            }).then(function (response) {
                 console.log(response);
                 // 1. clear all the carousel
                 // 2. looking how many images we have
@@ -120,15 +113,34 @@ $(document).ready(function() {
         }
         display();
     });
+    var nameCookie = (document.cookie.split(";").filter(function (item) {
+        return item.trim().indexOf('name=') == 0
+    }));
 
-    $("#submitButtonEmail").on("click", function(event) {
+    if (nameCookie.length) {
+        // nameCookie[0].substring();
+        $("#signInButton").hide();
+        $("#helloName").show();
+        $("helloUserName").text(nameCookie[0].substring(4));
+
+    }
+
+    $("#signOut").on("click", function () {
+        document.cookie = "name=" + "" + ";expires =" + new Date().toUTCString();
+        $("#signInButton").show();
+        $("#helloName").hide();
+        $("helloUserName").text("");
+    });
+
+    // document.cookie = "name=" + "userName" + ";expires =" + new Date().toUTCString();
+    $("#submitButtonEmail").on("click", function (event) {
         var userName = $("#exampleInputEmail1").val().trim();
         var userPassword = $("#exampleInputPassword1").val().trim();
         // TODO: put validation
         var user = database.ref(userSignIn);
         var name = user.child(userName);
 
-        name.once("value", function(data) {
+        name.once("value", function (data) {
             console.log(data);
             if (!data.exists()) {
                 console.log("null name");
@@ -148,6 +160,9 @@ $(document).ready(function() {
             $("#signInButton").hide();
             $("#helloName").show();
             $("helloUserName").text(userName);
+
+            document.cookie = "name=" + userName + ";expires =" + new Date (moment().add(30, "minutes").toDate());
+            console.log(document.cookie);
         });
 
 
@@ -254,9 +269,9 @@ $(document).ready(function() {
 // searchIngredients();
 // mealPlan();
 
-$(document).ready(function() {
-    $(window).scroll(function() {
-        $(".card-fill").each(function(i) {
+$(document).ready(function () {
+    $(window).scroll(function () {
+        $(".card-fill").each(function (i) {
             var bottomOfObject = $(this).offset().top + $(this).outerHeight();
             var bottomOfWindow = $(window).scrollTop() + $(window).height();
 
