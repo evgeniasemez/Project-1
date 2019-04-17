@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- linking moment -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -34,7 +34,7 @@
                     <h5 style="float:left;">  <span id="signOut">Sign Out</span></h5>
                     </a>
                 </div>
-            
+                <!-- <i class="fas fa-moon" style="font-size: 50px; border:none !important;"></i> -->
             </div>
         </nav>
         
@@ -66,10 +66,10 @@
         </div>
         <div class="jumbotron jumbotron-fluid fixed-top">
             <div class="container">
-                <h1 class="display-4">Search for Recipies</h1>
+                <h1 class="display-4">Search for Recipes</h1>
                 <div class="search-bars">
                     <form class="form-inline my-2 my-lg-0 recipie-search" style="float:left">
-                        <input class="form-control mr-sm-2" type="search" id="recipesSearch" placeholder="Recipies" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" id="recipesSearch" placeholder="Recipes" aria-label="Search">
                     </form>
                     <form class="form-inline my-2 my-lg-0 ingred-search" style="float:left">
                         <input class="form-control mr-sm-2" type="search" id="ingredientsSearch" placeholder="Ingredients" aria-label="Search">
@@ -352,58 +352,8 @@
         </div>
     </div>
 
-    <div class="card-fill">
-        <div class="scroll-view">
-            <div class=" go-away">
-                <div class="card not-used" style="width: 18rem;">
-                    <img src="./assets/images/photo16.jpeg" class="card-img-top" alt="..." style="height: 300px">
-                    <div class="card-body">
-                        <p class="card-text">100 Summer Dinners You Can Make on the Grill</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card not-used" style="width: 18rem;">
-                <img src="./assets/images/photo17.jpeg" class="card-img-top" alt="..." style="height: 300px">
-                <div class="card-body">
-                    <p class="card-text">The 5 Best Tools for Grilling Ribs
-                    </p>
-                </div>
-            </div>
-            <div class="card not-used" style="width: 18rem;">
-                <img src="./assets/images/photo18.jpeg" class="card-img-top" alt="..." style="height: 300px">
-                <div class="card-body">
-                    <p class="card-text">How to Shred Cabbage the Easy Way
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-fill">
-        <div class="scroll-view">
-            <div class=" go-away">
-                <div class="card not-used" style="width: 18rem;">
-                    <img src="./assets/images/photo19.jpeg" class="card-img-top" alt="..." style="height: 300px">
-                    <div class="card-body">
-                        <p class="card-text">80 Contest-Winning Dinners That Are Ready in 30 Minutes or Less</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card not-used" style="width: 18rem;">
-                <img src="./assets/images/photo20.jpeg" class="card-img-top" alt="..." style="height: 300px">
-                <div class="card-body">
-                    <p class="card-text">7 Ways to Thicken up a Sauce
-                    </p>
-                </div>
-            </div>
-            <div class="card not-used" style="width: 18rem;">
-                <img src="./assets/images/photo21.jpeg" class="card-img-top" alt="..." style="height: 300px">
-                <div class="card-body">
-                    <p class="card-text">60 Sunday Dinners Ready in 30 Minutes or Less
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div id="map">
+        
     </div>
 
     <br>
@@ -436,6 +386,9 @@
 
 
     <script src="assets/javascript/app.js"></script>
+    
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYQAfrkMw2mjVs5X7b4JxGei6qPyLnwyE&libraries=places&callback=initMap" async defer></script>
 </body>
 
 </html>

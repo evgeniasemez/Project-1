@@ -1,3 +1,8 @@
+html,
+body {
+    background-color: #e9d8c9 !important;
+}
+
 #helloName {
     display: none;
 }
@@ -73,6 +78,7 @@
     background-color: lightgrey;
     text-align: center;
     width: 100%;
+
 }
 
 i {
@@ -88,6 +94,22 @@ i {
 .git:hover {
     transform: scale(1.5);
 }
+
+.fa-moon {
+    left: 100;
+}
+
+#map {
+  margin: 0 auto;
+    height: 600px;
+    width: 600px;
+    
+}
+
+
+
+
+
 
 
 /* media queries */

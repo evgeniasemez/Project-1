@@ -1,3 +1,8 @@
+html,
+body {
+    background-color: #e9d8c9 !important;
+}
+
 .recipes {
     margin: 0px;
     justify-content: center;
@@ -30,4 +35,28 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+
+.footer {
+    margin-top: 25px;
+    position: sticky;
+    padding: 8px;
+    background-color: lightgrey;
+    text-align: center;
+    width: 100%;
+}
+
+i {
+    padding: 5px;
+    border-right: 1px solid black;
+}
+
+.git {
+    height: 25px;
+    width: 25px;
+}
+
+.git:hover {
+    transform: scale(1.5);
 }
