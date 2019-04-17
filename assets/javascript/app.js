@@ -180,6 +180,7 @@ $(document).ready(function () {
                     $(`#carousel${i}`).attr("src", imgURL);
                     $(`#foodtitle${i}`).text(title);
                     $(`#calories${i}`).text(calories + " calories");
+
                 // }
 
 
@@ -246,8 +247,8 @@ $(document).ready(function () {
            
 
             }
-                $(`#recipes${i}`).append(buttonRandom)
 
+                $(`#recipes${i}`).append(buttonRandom)
         });
     }
     secondAPI();
@@ -333,7 +334,6 @@ $(document).ready(function () {
         })        
         
     }
-
 });
 
 // var domainStr = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?"
@@ -470,3 +470,80 @@ $(document).ready(function () {
 //         }
 //     });
 // })
+//
+//
+// MAPS API
+var map;
+var service;
+var infowindow;
+
+function initMap() {
+  var seattle = new google.maps.LatLng(47.6062, -122.335167);
+
+  infowindow = new google.maps.InfoWindow();
+
+  map = new google.maps.Map(
+      document.getElementById('map'), {center: seattle, zoom: 15});
+
+      var request = {
+        location: seattle,
+        // radius: '500',
+        query: 'food'
+      };
+
+  service = new google.maps.places.PlacesService(map);
+
+  service.findPlaceFromQuery(request, function(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+
+      map.setCenter(results[0].geometry.location);
+    }
+  });
+}
+
+function createMarker(place) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
+
+
+// var map;
+// var service;
+// var infowindow;
+
+// function initialize() {
+//   var pyrmont = new google.maps.LatLng(47.6062, -122.335167);
+
+//   map = new google.maps.Map(document.getElementById('map'), {
+//       center: pyrmont,
+//       zoom: 15
+//     });
+
+//   var request = {
+//     location: pyrmont,
+//     radius: '500',
+//     type: ['restaurant']
+//   };
+
+//   service = new google.maps.places.PlacesService(map);
+//   service.nearbySearch(request, callback);
+// }
+
+// function callback(results, status) {
+//   if (status == google.maps.places.PlacesServiceStatus.OK) {
+//     for (var i = 0; i < results.length; i++) {
+//       var place = results[i];
+//       createMarker(results[i]);
+//     }
+//   }
+// }
