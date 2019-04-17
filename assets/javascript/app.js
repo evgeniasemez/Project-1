@@ -13,10 +13,19 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var userSignIn = "/userSignIn";
-database.ref(userSignIn).child("Evgenia").set({
-    userName: "Evgenia",
-    userPassword: "Test1234",
-});
+var userName = "Evgenia";
+// database.ref(userSignIn).child(userName).set({
+//     userName: "Evgenia",
+//     userPassword: "Test1234",
+// });
+var recipeTitle = "";
+var recipeImg = "";
+var savedRecipes = "/savedRecipes";
+// database.ref(savedRecipes).child("Evgenia").set({
+//     recipeTitle = "";
+//     recipeImg = ""
+// });
+
 // example
 // database.ref(userSignIn).child("Lawrence").set({
 //     userName: "Lawrence",
@@ -89,10 +98,13 @@ $(document).ready(function () {
                     var recipeTitle = response.results[i].title;
                     var imgURL = response.results[i].image;;              
                     var button = $("<button>")
-                    button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + recipeTitle)
+                    button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + "Recipe")
                     $(`#carousel${i}`).attr("src", imgURL).data(recipeTitle)
                     $(`#recipe${i}`).append(button)
                 }
+
+                document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
+            console.log(document.cookie);
 
 
                 // String.prototype.escapeSpecialChars = function() {
@@ -106,27 +118,51 @@ $(document).ready(function () {
                 //                .replace(/\\f/g, "\\f");
                 // };
 
+                var saveCookie = (document.cookie.split(";").filter(function (item) {
+                    return item.trim().indexOf('recipeName=') == 0
+                }));
+
+                if (nameCookie.length) {
+                    // nameCookie[0].substring();
+                    $(".saveButton").empty();
+                    $(".saveButton").html("Saved");
+                }
+
                 $(".saveButton").on("click", function(event) {
-                    var recipe = {
-                        savedRecipe: $(this).attr("data-name"),
-                        savedImg: $(this).attr("src"),
-                    }
-                    recipe = JSON.stringify(recipe);
-                    var escapedRecipe = recipe.escapeSpecialChars();
+                    recipeTitle = $(this).attr("data-name"),
+                    recipeImg = $(this).attr("src");
+
+                    database.ref("userSignIn/" + userName + "/recipes/").push({
+                        recipeTitleData: recipeTitle,
+                        recipeImgData: recipeImg
+                    });
+                
+                    // recipe = JSON.stringify(recipe);
                                     
-                    console.log(escapedRecipe)
-                    // console.log(savedRecipe);
-                    // console.log(savedImg);
-                    localStorage.setItem("recipeData", escapedRecipe);
-                    console.log(localStorage.setItem("recipeData", escapedRecipe));
-                    checkUser();
+                    // console.log(recipe)
+                    // // console.log(savedRecipe);
+                    // // console.log(savedImg);
+                   
+                    // document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
+                    // console.log(document.cookie);
+                    
+                    // checkUser();
                 })
+
+                database.ref("userSignIn/" + userName + "/recipes/").on("child_added", function (snapshot) {
+                    var snap = snapshot.val();
+                    console.log(snap)
+                    var savedImg = snap.recipeImgData
+                    console.log(savedImg)
+                    var savedRecipe = snap.recipeTitleData
+
+                    $(".savedRecipe").prepend(savedRecipe)
 
                 // for (var j = 0; j < response.results.length; j++) {
                 //     var button = $("<button>")
                 //     button.attr("data-name", recipeTitle).html("save" + recipeTitle);
                 //     $(".carousel-item").append(button)
-                // }
+                })
 
 
 
@@ -140,10 +176,12 @@ $(document).ready(function () {
                     var title = response.results[i].title;
                     var calories = response.results[i].calories;
                     var imgURL = response.results[i].image;
+                    
                     $(`#carousel${i}`).attr("src", imgURL);
                     $(`#foodtitle${i}`).text(title);
                     $(`#calories${i}`).text(calories + " calories");
-                
+
+                // }
 
 
 
@@ -200,16 +238,22 @@ $(document).ready(function () {
                 var readyInMinutes = response.recipes[i].readyInMinutes;
                 var titleRandom = response.recipes[i].title;
                 var imgURL2 = response.recipes[i].image;
+                var buttonRandom = $("<button>")
+                    buttonRandom.attr("data-name", titleRandom).attr("src", imgURL2).addClass("saveButton").html("Save " + "Recipe")
                 console.log(imgURL2);
                 $(`#carousel${i}`).attr("src", imgURL2);
                 $(`#foodtitle${i}`).text(titleRandom);
                 $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
-
+           
 
             }
+
+                $(`#recipes${i}`).append(buttonRandom)
         });
     }
     secondAPI();
+
+   
 
     var nameCookie = (document.cookie.split(";").filter(function (item) {
         return item.trim().indexOf('name=') == 0
