@@ -24,6 +24,9 @@ database.ref(userSignIn).child("Evgenia").set({
 // });
 
 
+
+
+
 $(document).ready(function () {
     var maxCalories;
     var recipestitleQuery;
@@ -83,6 +86,57 @@ $(document).ready(function () {
                 // or loop through 9 images i<10, because the carousel has 9 cards
                 for (var i = 0; i < response.results.length; i++) {
                     $(`#carousel${i}`).val("");
+                    var recipeTitle = response.results[i].title;
+                    var imgURL = response.results[i].image;;              
+                    var button = $("<button>")
+                    button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + recipeTitle)
+                    $(`#carousel${i}`).attr("src", imgURL).data(recipeTitle)
+                    $(`#recipe${i}`).append(button)
+                }
+
+
+                // String.prototype.escapeSpecialChars = function() {
+                //     return this.replace(/\\n/g, "\\n")
+                //                .replace(/\\'/g, "\\'")
+                //                .replace(/\\"/g, '\\"')
+                //                .replace(/\\&/g, "\\&")
+                //                .replace(/\\r/g, "\\r")
+                //                .replace(/\\t/g, "\\t")
+                //                .replace(/\\b/g, "\\b")
+                //                .replace(/\\f/g, "\\f");
+                // };
+
+                $(".saveButton").on("click", function(event) {
+                    var recipe = {
+                        savedRecipe: $(this).attr("data-name"),
+                        savedImg: $(this).attr("src"),
+                    }
+                    recipe = JSON.stringify(recipe);
+                    var escapedRecipe = recipe.escapeSpecialChars();
+                                    
+                    console.log(escapedRecipe)
+                    // console.log(savedRecipe);
+                    // console.log(savedImg);
+                    localStorage.setItem("recipeData", escapedRecipe);
+                    console.log(localStorage.setItem("recipeData", escapedRecipe));
+                    checkUser();
+                })
+
+                // for (var j = 0; j < response.results.length; j++) {
+                //     var button = $("<button>")
+                //     button.attr("data-name", recipeTitle).html("save" + recipeTitle);
+                //     $(".carousel-item").append(button)
+                // }
+
+
+
+
+                // for(var j = 0; j < response.results.length; j++)
+                // var rectipeTitle = response.resilts[i].title;
+                // var button = $("<button>");
+                // button.addclass("saveButton").attr("data-name", recipeTitle).html("save" + recipeTitle);
+                // $(".carousel-item").append(button)
+
                     var title = response.results[i].title;
                     var calories = response.results[i].calories;
                     var imgURL = response.results[i].image;
@@ -193,7 +247,7 @@ $(document).ready(function () {
         name.once("value", function (data) {
             console.log(data);
             if (!data.exists()) {
-                console.log("null name");
+                // d
                 $("#exampleInputPassword1").val("");
                 $("#exampleInputEmail1").val("");
                 return;
@@ -217,6 +271,28 @@ $(document).ready(function () {
 
 
     });
+
+    function checkUser(data) {
+        var user = database.ref(userSignIn)
+        var name = user.child(userName)
+
+        name.once("value", function (data) {
+            console.log(data);
+            if(!data.exists()) {
+                console.log(null)
+                var accountDiv = $("<div>");
+                var makeAccount = $("<h2>")
+                makeAccount.text("Please Create Account")
+                accountDiv.append(makeAccount);
+                $("#loginModal").show();
+                $("#loginModal").prepend(accountDiv);
+            } else {
+                loadData();
+            }
+        })        
+        
+    }
+
 });
 
 // var domainStr = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?"
@@ -331,3 +407,25 @@ $(document).ready(function () {
         });
     });
 });
+
+// $(function () {
+//     $(".myRecipes").draggable({
+//         revert: "invalid",
+//         helper: "clone",
+//         zindex: 10000
+//     });
+
+//     $("#breakfast #lunch #dinner").droppable({
+//         accept: ".myRecipes",
+//         tolerance: 'pointer',
+//         greedy: true,
+//         hoverClass: 'highlight',
+//         drop: function (ev, ui) {
+//             $(ui.draggable).clone(true).detach().css({
+//                 position: 'relative',
+//                 top: 'auto',
+//                 left: 'auto'
+//             }).appendTo(this);
+//         }
+//     });
+// })

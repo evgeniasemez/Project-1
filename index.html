@@ -11,6 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- linking moment -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   
@@ -32,6 +34,7 @@
                     <h5 style="float:left;">  <span id="signOut">Sign Out</span></h5>
                     </a>
                 </div>
+            
             </div>
         </nav>
         
@@ -91,7 +94,7 @@
                     <li data-target="#carouselExampleCaptions0" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active" id="recipe0">
                         <img id="carousel0" class="d-block w-100 random-one" alt="..." style="height: 300px; width: 300px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 id="foodtitle0">First slide label</h5>
@@ -99,16 +102,18 @@
                         </div>
                     </div>
 
-                    <div class="carousel-item">
+                    <div class="carousel-item" id="recipe1">
                         <img id="carousel1" class="d-block w-100 random-two" alt="..." style="height: 300px; width: 300px;">
                         <div class="carousel-caption d-none d-md-block">
+                            
                             <h5 id="foodtitle1">Second slide label</h5>
                             <p id="calories1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item" id="recipe2">
                         <img id="carousel2" class="d-block w-100 random-three" alt="..." style="height: 300px; width: 300px;">
                         <div class="carousel-caption d-none d-md-block">
+                    
                             <h5 id="foodtitle2">Third slide label</h5>
                             <p id="calories2">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                         </div>
@@ -132,21 +137,21 @@
                     <li data-target="#carouselExampleCaptions1" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active" id="recipe3">
                         <img id="carousel3" class="d-block w-100 random-four" id="firstImage" alt="..." style="height: 300px">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 id="foodtitle3">First slide label</h5>
                             <p id="calories3">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item" id="recipe4">
                         <img id="carousel4" class="d-block w-100 random-five" alt="..." style="height: 300px">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 id="foodtitle4">Second slide label</h5>
                             <p id="calories4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item" id="recipe5">
                         <img id="carousel5" class="d-block w-100 random-six" alt="..." style="height: 300px">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 id="foodtitle5">Third slide label</h5>
@@ -172,7 +177,7 @@
                     <li data-target="#carouselExampleCaptions2" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active" id="recipe6">
                         <img id="carousel6" class="d-block w-100 random-seven" alt="..." style="height: 300px">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 id="foodtitle6">First slide label</h5>
