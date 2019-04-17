@@ -1,6 +1,19 @@
 #helloName {
     display: none;
 }
+#signOut {
+    padding-left: 10px;
+    color: #007bff;
+}
+.carousel-caption{
+    color: black;
+    /* text-shadow: 2px 2px 5px white; */
+    /* opacity: 0.5; */
+    background-color: rgba(255,255,255,0.9);
+}
+#signOut:hover{
+    color: #0056b3;
+}
 
 .navbar {
     background-color: white !important;
@@ -14,7 +27,6 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 0 auto;
 }
 
 .jumbotron {
@@ -55,12 +67,67 @@
 }
 
 .footer {
-    padding: 10px;
+    margin-top: 25px;
+    position: sticky;
+    padding: 8px;
     background-color: lightgrey;
     text-align: center;
+    width: 100%;
 }
 
 i {
     padding: 5px;
     border-right: 1px solid black;
+}
+
+.git {
+    height: 25px;
+    width: 25px;
+}
+
+.git:hover {
+    transform: scale(1.5);
+}
+
+
+/* media queries */
+
+@media only screen and (max-width: 991px) {
+    #buttonSearch {
+        margin-top: 10px;
+    }
+    #buttonSearch {
+        margin-bottom: 10px;
+    }
+    #buttonSearch {
+        height: 38px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .calorie-search {
+        display: none;
+    }
+    .ingred-search {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 554px) {
+    .go-away {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 585px) {
+    .footer {
+        font-size: 10px;
+        ;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .git {
+        display: none;
+    }
 }

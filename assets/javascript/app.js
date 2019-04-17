@@ -17,10 +17,11 @@ database.ref(userSignIn).child("Evgenia").set({
     userName: "Evgenia",
     userPassword: "Test1234",
 });
+// example
+// database.ref(userSignIn).child("Lawrence").set({
+//     userName: "Lawrence",
+//     userPassword: "Test1234",
 // });
-// Step 2: check database. 
-// Step 3: if they are - return the users name, change sign in button to users name. Load users data.
-//  Step 4: if not - empty inputs.
 
 
 
@@ -136,6 +137,15 @@ $(document).ready(function () {
                 // button.addclass("saveButton").attr("data-name", recipeTitle).html("save" + recipeTitle);
                 // $(".carousel-item").append(button)
 
+                    var title = response.results[i].title;
+                    var calories = response.results[i].calories;
+                    var imgURL = response.results[i].image;
+                    $(`#carousel${i}`).attr("src", imgURL);
+                    $(`#foodtitle${i}`).text(title);
+                    $(`#calories${i}`).text(calories + " calories");
+                }
+
+
 
                 // second way of doing a carousel 
                 // $("#firstCarousel").empty();
@@ -166,31 +176,67 @@ $(document).ready(function () {
         display();
     });
 
-    // String.prototype.escapeSpecialChars = function() {
-    //     return this.replace(/\\n/g, "\\n")
-    //                .replace(/\\'/g, "\\'")
-    //                .replace(/\\"/g, '\\"')
-    //                .replace(/\\&/g, "\\&")
-    //                .replace(/\\r/g, "\\r")
-    //                .replace(/\\t/g, "\\t")
-    //                .replace(/\\b/g, "\\b")
-    //                .replace(/\\f/g, "\\f");
-    // };
-    
+    // Second API call
 
-    function loadData() {
-        var loadRecipe = localStorage.getItem("recipeData");
-        console.log(loadRecipe)
-        if(!loadRecipe) return false;
-        localStorage.removeItem("recipeData")
-        loadRecipe = JSON.parse("recipeData")
-        console.log(loadRecipe)
-        
-        $(".myRecipes").append
+    function secondAPI() {
+        //  setting an API url
+        var numberRecipes = "number=10";
+        var queryURL2 = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?" + numberRecipes;
+        console.log(queryURL2);
+
+
+        //Creating an AJAX call 
+        $.ajax({
+            url: queryURL2,
+            method: "GET",
+            headers: {
+                "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+                "X-RapidAPI-Key": "0a1b13432cmshb515af5d16ebe56p13fee7jsn5cd90584b6e3",
+            }
+        }).then(function (response) {
+            console.log(response);
+            for (var i = 0; i < response.recipes.length; i++) {
+                // $(`#carousel${i}`).val("");
+                var readyInMinutes = response.recipes[i].readyInMinutes;
+                var titleRandom = response.recipes[i].title;
+                var imgURL2 = response.recipes[i].image;
+                console.log(imgURL2);
+                $(`#carousel${i}`).attr("src", imgURL2);
+                $(`#foodtitle${i}`).text(titleRandom);
+                $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
+
+
+            }
+
+
+        });
+    }
+    secondAPI();
+
+    var nameCookie = (document.cookie.split(";").filter(function (item) {
+        return item.trim().indexOf('name=') == 0
+    }));
+    if (nameCookie === "") {
+        secondAPI();
+    }
+
+    if (nameCookie.length) {
+        // nameCookie[0].substring();
+        $("#signInButton").hide();
+        $("#helloName").show();
+        $("#helloUserName").text(nameCookie[0].substring(5));
 
     }
-        loadData();
 
+    $("#signOut").on("click", function () {
+        document.cookie = "name=" + "" + ";expires =" + new Date().toUTCString();
+        $("#signInButton").show();
+        $("#helloName").hide();
+        $("#helloUserName").text("User");
+        secondAPI();
+    });
+
+    // document.cookie = "name=" + "userName" + ";expires =" + new Date().toUTCString();
     $("#submitButtonEmail").on("click", function (event) {
         var userName = $("#exampleInputEmail1").val().trim();
         var userPassword = $("#exampleInputPassword1").val().trim();
@@ -217,7 +263,10 @@ $(document).ready(function () {
             }
             $("#signInButton").hide();
             $("#helloName").show();
-            $("helloUserName").text(userName);
+            $("#helloUserName").text(userName);
+
+            document.cookie = "name=" + userName + ";expires =" + new Date(moment().add(30, "minutes").toDate());
+            console.log(document.cookie);
         });
 
 
