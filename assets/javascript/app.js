@@ -9,9 +9,9 @@ var config = {
 };
 
 firebase.initializeApp(config);
-function initApp() {
-    firebase.auth().onAuthStateChanged(function(user) 
-}
+// function initApp() {
+//     firebase.auth().onAuthStateChanged(function(user) {
+// }
 
 // setting Firebase database
 var database = firebase.database();
@@ -25,23 +25,6 @@ var userName = "Evgenia";
 var recipeTitle = "";
 var recipeImg = "";
 var savedRecipes = "/savedRecipes";
-// database.ref(savedRecipes).child("Evgenia").set({
-//     recipeTitle = "";
-//     recipeImg = ""
-// });
-
-// example
-// database.ref(userSignIn).child("Lawrence").set({
-//     userName: "Lawrence",
-//     userPassword: "Test1234",
-// });
-
-
-
-// database.ref(userSignIn).child("Evgenia").set({
-//     userName: "Evgenia",
-//     userPassword: "Test1234",
-// });
 
 
 $(document).ready(function () {
@@ -51,11 +34,11 @@ $(document).ready(function () {
     var caloriesQueryParam;
     var recipesQueryParam;
     var ingredienceQueryParam;
-
+    // clearing the inputs
     $("#recipesSearch").val("");
     $("#ingredientsSearch").val("");
     $("#caloriesInput").val("");
-
+    // setting a search recipes functionality by three inputs recipes, ingrediance and calories
     $("#buttonSearch").on("click", function () {
         maxCalories = $("#caloriesInput").val().trim();
         recipestitleQuery = $("#recipesSearch").val().trim();
@@ -64,7 +47,7 @@ $(document).ready(function () {
         if (maxCalories !== "") {
             caloriesQueryParam = "&maxCalories=" + maxCalories;
         } else {
-            caloriesQueryParam = "2000";
+            caloriesQueryParam = ("&maxCalories=2000");
         }
         if (recipestitleQuery !== "") {
             recipesQueryParam = "query=" + recipestitleQuery;
@@ -96,23 +79,16 @@ $(document).ready(function () {
                 console.log("search results");
 
                 // assume we have recipes to return
-                // or loop through 9 images i<10, because the carousel has 9 cards
                 for (var i = 0; i < response.results.length; i++) {
                     $(`#carousel${i}`).val("");
-                    // var recipeTitle = response.results[i].title;
-                    // var imgURL = response.results[i].image;
                     var title = response.results[i].title;
                     var calories = response.results[i].calories;
                     var imgURL = response.results[i].image;
-                    // var button = $("<button>")
-                    // button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + "Recipe")
+                    
                     $(`#buttonSave${i}`).attr("src", imgURL);
                     $(`#buttonSave${i}`).attr("Title", title);
                     $(`#buttonSave${i}`).attr("Calories", calories);
                     $(`#buttonSave${i}`).show();
-
-                    // $(`#carousel${i}`).attr("src", imgURL).data(recipeTitle)
-                    // $(`#recipe${i}`).append(button)
 
                     $(`#carousel${i}`).attr("src", imgURL);
                     $(`#foodtitle${i}`).text(title);
@@ -120,17 +96,13 @@ $(document).ready(function () {
                 }
 
 
-
-
-                // var saveCookie = (document.cookie.split(";").filter(function (item) {
-                //     return item.trim().indexOf('recipeName=') == 0
-                // }));
-
             });
         }
         display();
     });
 
+    var caloriesCount = 0;
+    // storing data into database
     database.ref("userSignIn/" + userName + "/recipes/").on("child_added", function (snapshot) {
         var snap = snapshot.val();
         console.log(snap)
@@ -140,13 +112,7 @@ $(document).ready(function () {
         var caloriesData = snap.caloriesData;
         console.log(caloriesData);
 
-        // $(".savedRecipe").prepend(savedRecipe)
-        // <div class="card savedRecipe">
-        //     <!-- <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe"> -->
-        //                         <div class="card-body">
-        //             <p class="card-text">Recipe Name</p>
-        //         </div>
-        //                     </div>
+        // creating a card
         var card = $("<div>");
         card.addClass("card savedRecipe");
         var cardImg = $("<img>");
@@ -156,12 +122,24 @@ $(document).ready(function () {
         var cardBody = $("<div>");
         cardBody.addClass("card-body");
         cardBody.html(`<p class="card-text">${savedRecipe}</p>`);
+        card.attr("calories", caloriesData);
+        $("#calorieCount").text();
+
+        // setting drag functionality
+        card.draggable({
+            // stack: $(this),
+            containment: "document",
+            revert: "invalid",
+            helper: "clone",
+            zIndex: 1000
+        });
+
         card.append(cardImg);
         card.append(cardBody);
         $("#savedItems").append(card);
-    
-    })
 
+    })
+    // save recipes button
     $(".saveButton").on("click", function () {
         if (isLoggedIn()) {
             var title = $(this).attr("title");
@@ -178,7 +156,6 @@ $(document).ready(function () {
         else {
             $("#loginModal").modal("show");
         }
-        // $("#loginModal").modal("show");
     });
 
     // Second API call
@@ -211,19 +188,17 @@ $(document).ready(function () {
                 $(`#foodtitle${i}`).text(titleRandom);
                 $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
 
-
-                // $(`#recipe${i}`).append(buttonRandom)
                 $(`#buttonSave${i}`).hide();
             }
         });
     }
     secondAPI();
 
-
+    // setting the cookie for sign in functionality
     var nameCookie = (document.cookie.split(";").filter(function (item) {
         return item.trim().indexOf('name=') == 0
     }));
-
+    // checking the validation 
     function isLoggedIn() {
         var Cookie = (document.cookie.split(";").filter(function (item) {
             return item.trim().indexOf('name=') == 0
@@ -235,14 +210,14 @@ $(document).ready(function () {
     if (nameCookie === "") {
         secondAPI();
     }
-
+    // hiding sign in button once logged in
     if (isLoggedIn()) {
         $("#signInButton").hide();
         $("#helloName").show();
         $("#helloUserName").text(nameCookie[0].trim().substring(5));
 
     }
-
+    // showing the sign in form once signed out
     $("#signOut").on("click", function () {
         document.cookie = "name=" + "" + ";expires =" + new Date().toUTCString();
         $("#signInButton").show();
@@ -251,21 +226,16 @@ $(document).ready(function () {
         secondAPI();
     });
 
-    // $("#helloName").on("click", function () {
-    //     window.location.href = 
-
-    // })
-
-    // document.cookie = "name=" + "userName" + ";expires =" + new Date().toUTCString();
+    // setting sign in form
     $("#submitButtonEmail").on("click", function (event) {
         var userName = $("#exampleInputEmail1").val().trim();
         var userPassword = $("#exampleInputPassword1").val().trim();
-        // TODO: put validation
+
         var user = database.ref(userSignIn);
         var name = user.child(userName);
 
-        name.once("value", function () {
-            console.log(name);
+        name.once("value", function (data) {
+            console.log(data);
             if (!data.exists()) {
                 // d
                 $("#exampleInputPassword1").val("");
@@ -291,46 +261,52 @@ $(document).ready(function () {
 
 
     });
+    // setting drag and drop functionality 
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            $(".card-fill").each(function (i) {
+                var bottomOfObject = $(this).offset().top + $(this).outerHeight();
+                var bottomOfWindow = $(window).scrollTop() + $(window).height();
 
-$(document).ready(function () {
-    $(window).scroll(function () {
-        $(".card-fill").each(function (i) {
-            var bottomOfObject = $(this).offset().top + $(this).outerHeight();
-            var bottomOfWindow = $(window).scrollTop() + $(window).height();
-
-            if (bottomOfWindow > bottomOfObject) {
-                $(this).animate({ "opacity": "1" }, 2000);
-            }
+                if (bottomOfWindow > bottomOfObject) {
+                    $(this).animate({ "opacity": "1" }, 2000);
+                }
+            });
         });
     });
+
+    // setting the draggable
+    $(function () {
+        $(".savedRecipe").draggable({
+            // stack: $(this),
+            containment: "document",
+            revert: "invalid",
+            helper: "clone",
+            zindex: 100
+        });
+
+        $("#breakfastCard, #lunchCard, #dinnerCard").droppable({
+            activeClass: "ui-state-default",
+            hoverClass: "ui-state-hover",
+            accept: ":not(.ui-sortable-helper)",
+            // accept: ".card",
+            tolerance: 'pointer',
+            greedy: true,
+            drop: function (ev, ui) {
+                $(this).empty();
+                $(ui.draggable).clone(true, true).css({
+                    position: 'relative',
+                    top: 'auto',
+                    left: 'auto'
+                }).appendTo(this);
+                var calories = parseInt(ui.draggable.attr("calories"));
+
+                caloriesCount += calories;
+                $("#calorieCount").html(caloriesCount);
+            }
+        });
+    })
 });
-
-$(function () {
-    $(".card").draggable({
-        // stack: $(this),
-        containment: "document",
-        revert: "invalid",
-        helper: "clone",
-        zindex: 100
-    });
-
-    $("#breakfastCard, #lunchCard, #dinnerCard").droppable({
-        activeClass: "ui-state-default",
-        hoverClass: "ui-state-hover",
-        accept: ":not(.ui-sortable-helper)",
-        // accept: ".card",
-        tolerance: 'pointer',
-        greedy: true,
-        drop: function (ev, ui) {
-            $(this).empty();
-            $(ui.draggable).clone(true).detach().css({
-                position: 'relative',
-                top: 'auto',
-                left: 'auto'
-            }).appendTo(this);
-        }
-    });
-})
 //
 //
 // MAPS API
@@ -378,33 +354,5 @@ function createMarker(place) {
 }
 
 
-        // var map;
-        // var service;
-        // var infowindow;
+    
 
-// function initialize() {
-//   var pyrmont = new google.maps.LatLng(47.6062, -122.335167);
-
-//   map = new google.maps.Map(document.getElementById('map'), {
-//       center: pyrmont,
-//       zoom: 15
-//     });
-
-//   var request = {
-//     location: pyrmont,
-//     radius: '500',
-//     type: ['restaurant']
-//   };
-
-//   service = new google.maps.places.PlacesService(map);
-//   service.nearbySearch(request, callback);
-// }
-
-// function callback(results, status) {
-//   if (status == google.maps.places.PlacesServiceStatus.OK) {
-//     for (var i = 0; i < results.length; i++) {
-//       var place = results[i];
-//       createMarker(results[i]);
-//     }
-//   }
-// }
