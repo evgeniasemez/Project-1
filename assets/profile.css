@@ -19,6 +19,7 @@ body {
 
 .savedRow {
     margin-bottom: 25px;
+    overflow: visible;
 }
 
 .breakfastImg{

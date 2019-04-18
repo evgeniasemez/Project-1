@@ -28,6 +28,15 @@
 
         <div class="testvh">
                 <nav class="navbar navbar-light bg-light">
+                        <div id="helloName">
+                                <a href="profile.html">
+                                    <h5 style="float:left;">Hello, <span id="helloUserName">User</span></h5>
+                                </a>
+                                <!-- <button type="button" class="btn btn-link" style="float:left;" id="signOut">Sign Out</button> -->
+                                <a href="">
+                                <h5 style="float:left;">  <span id="signOut">Sign Out</span></h5>
+                                </a>
+                            </div>
                         <h1 class="display-4">Search for Recipes</h1>
                         <div class="search-bars">
                             <!-- <form class="form-inline my-2 my-lg-0 recipie-search" style="float:left">
@@ -42,7 +51,12 @@
                             <a href="./index.html#testvh"> <button type="button" class="btn btn-success search" id="buttonSearch profileSearch" style="float:left;">Search</button>
                             </a>
                 </nav>
+
                 </div>
+
+    <div class="containerDiv">
+    
+    </div>
 
     <div class="container">
         <div class="featured; row">
@@ -54,19 +68,19 @@
 
         <div class="row savedRow">
             <div class="card-deck">
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe0">
                         <!-- <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe"> -->
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
                         </div>
                     </div>
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe1">
                         <!-- <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe"> -->
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
                         </div>
                     </div>
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe2">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
@@ -77,42 +91,19 @@
 
         <div class="row savedRow">
             <div class="card-deck">
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe3">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
                         </div>
                     </div>
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe4">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
                         </div>
                     </div>
-                    <div class="card savedRecipe">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    </div>  
-        </div>
-
-        <div class="row savedRow">
-            <div class="card-deck">
-                    <div class="card savedRecipe">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card savedRecipe">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe5">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
@@ -123,19 +114,42 @@
 
         <div class="row savedRow">
             <div class="card-deck">
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe6">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
                         </div>
                     </div>
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe7">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
                         </div>
                     </div>
-                    <div class="card savedRecipe">
+                    <div class="card" id="savedRecipe8">
+                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                        <div class="card-body">
+                        <p class="card-text">Recipe Name</p>
+                        </div>
+                    </div>
+                    </div>  
+        </div>
+
+        <div class="row savedRow">
+            <div class="card-deck">
+                    <div class="card" id="savedRecipe9">
+                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                        <div class="card-body">
+                        <p class="card-text">Recipe Name</p>
+                        </div>
+                    </div>
+                    <div class="card" id="savedRecipe10">
+                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                        <div class="card-body">
+                        <p class="card-text">Recipe Name</p>
+                        </div>
+                    </div>
+                    <div class="card" id="savedRecipe11">
                         <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
                         <div class="card-body">
                         <p class="card-text">Recipe Name</p>
@@ -168,7 +182,7 @@
                                 </div>
                         </div>
                         <div class="col-md-7">
-                            <div class="card-body">
+                            <div class="card-body mealCard" id="breakfastCard"> 
                                 <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's breakfast.</p>
                             </div>
                         </div>
@@ -186,7 +200,7 @@
                                 </div>
                         </div>
                         <div class="col-md-7">
-                            <div class="card-body">
+                            <div class="card-body mealCard" id="lunchCard">
                                 <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's lunch.</p>
                         </div>
                         </div>
@@ -204,7 +218,7 @@
                                 </div>
                         </div>
                         <div class="col-md-7">
-                        <div class="card-body">
+                        <div class="card-body mealCard" id="dinnerCard"> 
                             <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's dinner.</p>
                         </div>
                         </div>
