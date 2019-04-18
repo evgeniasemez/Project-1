@@ -15,6 +15,7 @@ body {
     /* text-shadow: 2px 2px 5px white; */
     /* opacity: 0.5; */
     background-color: rgba(255,255,255,0.9);
+    /* margin-bottom: 10px; */
 }
 #signOut:hover{
     color: #0056b3;
