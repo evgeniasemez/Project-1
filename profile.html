@@ -5,17 +5,14 @@
     <meta charset="utf-8">
     <title>Nutrition App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/profile.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -26,20 +23,12 @@
 
 <body>
 
-        <div class="testvh">
-                <nav class="navbar navbar-light bg-light">
-                        <div id="helloName">
-                                <a href="profile.html">
-                                    <h5 style="float:left;">Hello, <span id="helloUserName">User</span></h5>
-                                </a>
-                                <!-- <button type="button" class="btn btn-link" style="float:left;" id="signOut">Sign Out</button> -->
-                                <a href="">
-                                <h5 style="float:left;">  <span id="signOut">Sign Out</span></h5>
-                                </a>
-                            </div>
-                        <h1 class="display-4">Search for Recipes</h1>
-                        <div class="search-bars">
-                            <!-- <form class="form-inline my-2 my-lg-0 recipie-search" style="float:left">
+
+    <div class="testvh">
+        <nav class="navbar navbar-light bg-light">
+            <h1 class="display-4">Search for Recipes</h1>
+            <div class="search-bars">
+                <!-- <form class="form-inline my-2 my-lg-0 recipie-search" style="float:left">
                                 <input class="form-control mr-sm-2" type="search" id="recipesSearch" placeholder="Recipes" aria-label="Search" disabled>
                             </form>
                             <form class="form-inline my-2 my-lg-0 ingred-search" style="float:left">
@@ -48,11 +37,13 @@
                             <form class="form-inline my-2 my-lg-0 calorie-search" id="caloriesSearch" style="float:left">
                                 <input class="form-control mr-sm-2" id="caloriesInput" type="search" placeholder="Calories" aria-label="Search" disabled>
                             </form> -->
-                            <a href="./index.html#testvh"> <button type="button" class="btn btn-success search" id="buttonSearch profileSearch" style="float:left;">Search</button>
-                            </a>
-                </nav>
 
-                </div>
+                <a href="./index.html#testvh"> <button type="button" class="btn btn-success search" id="buttonSearch profileSearch"
+                        style="float:left;">Search</button>
+                </a>
+        </nav>
+    </div>
+
 
     <div class="containerDiv">
     
@@ -66,195 +57,225 @@
                     <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
 
 
-        <div class="row savedRow">
-            <div class="card-deck">
-                    <div class="card" id="savedRecipe0">
-                        <!-- <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe"> -->
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe1">
-                        <!-- <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe"> -->
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe2">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    </div>  
-        </div>
 
-        <div class="row savedRow">
-            <div class="card-deck">
-                    <div class="card" id="savedRecipe3">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe4">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe5">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    </div>  
-        </div>
 
-        <div class="row savedRow">
-            <div class="card-deck">
-                    <div class="card" id="savedRecipe6">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
+                    <div class="row savedRow">
+                        <div class="card-deck" id="savedItems">
+                            <!-- <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                 <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
-                    <div class="card" id="savedRecipe7">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe8">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    </div>  
-        </div>
 
-        <div class="row savedRow">
-            <div class="card-deck">
-                    <div class="card" id="savedRecipe9">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe10">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    <div class="card" id="savedRecipe11">
-                        <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                        <div class="card-body">
-                        <p class="card-text">Recipe Name</p>
-                        </div>
-                    </div>
-                    </div>
-        </div>
 
-            </div>
-        </div>
-        <div class="card mb-3 midsizecard; col-md-6">
-            <div class="card-body">
-                <div class="row no-gutters">
-                    <div class="col-md-6">
-                        <h5 class="card-title">Today's Meal Plan</h5>
+                    <div class="row savedRow">
+                        <div class="card-deck">
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <h5 class="card-title">Calorie Count = <span id="calorieCount"></span></h5>
+
+
+                    <div class="row savedRow">
+                        <div class="card-deck">
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+                    <div class="row savedRow">
+                        <div class="card-deck">
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="breakfastDiv">
+            </div>
+            <div class="card mb-3 midsizecard; col-md-6">
+                <div class="card-body">
                     <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <img src="assets/images/breakfast.jpg" class="card-img breakfastImg" alt="breakfast">
-                            <div class="card-img-overlay">
+                        <div class="col-md-6">
+                            <h5 class="card-title">Today's Meal Plan</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="card-title">Calorie Count = <span id="calorieCount"></span></h5>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="breakfastDiv">
+                        <div class="row no-gutters">
+                            <div class="col-md-5">
+                                <img src="assets/images/breakfast.jpg" class="card-img breakfastImg" alt="breakfast">
+                                <div class="card-img-overlay">
                                     <h2 class="card-title mealTitle">Breakfast</h2>
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                 </div>
+
                         </div>
                         <div class="col-md-7">
                             <div class="card-body mealCard" id="breakfastCard"> 
                                 <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's breakfast.</p>
+
                             </div>
-                        </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <p class="card-text text-muted small">Drag and drop a saved recipe here to add to
+                                        today's breakfast.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="lunchDiv">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                        <img src="assets/images/lunch.jpg" class="card-img breakfastImg" alt="breakfast">
-                        <div class="card-img-overlay">
-                                <h2 class="card-title mealTitle">Lunch</h2>
-                                <p class="card-text"></p>
-                                <p class="card-text"></p>
+                    <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="lunchDiv">
+                        <div class="row no-gutters">
+                            <div class="col-md-5">
+                                <img src="assets/images/lunch.jpg" class="card-img breakfastImg" alt="breakfast">
+                                <div class="card-img-overlay">
+                                    <h2 class="card-title mealTitle">Lunch</h2>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <p class="card-text text-muted small">Drag and drop a saved recipe here to add to
+                                        today's lunch.</p>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-md-7">
                             <div class="card-body mealCard" id="lunchCard">
                                 <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's lunch.</p>
                         </div>
                         </div>
                     </div>
+
                     </div>
 
-                <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="dinnerDiv">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                        <img src="assets/images/dinner.jpg" class="card-img breakfastImg" alt="breakfast">
-                        <div class="card-img-overlay">
-                                <h2 class="card-title mealTitle">Dinner</h2>
-                                <p class="card-text"></p>
-                                <p class="card-text"></p>
+                    <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="dinnerDiv">
+                        <div class="row no-gutters">
+                            <div class="col-md-5">
+                                <img src="assets/images/dinner.jpg" class="card-img breakfastImg" alt="breakfast">
+                                <div class="card-img-overlay">
+                                    <h2 class="card-title mealTitle">Dinner</h2>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <p class="card-text text-muted small">Drag and drop a saved recipe here to add to
+                                        today's dinner.</p>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-md-7">
                         <div class="card-body mealCard" id="dinnerCard"> 
                             <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's dinner.</p>
                         </div>
                         </div>
                     </div>
+
                     </div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 
 
     <div class="footer">
-            <i>Jovan Carty 
-                <a href="https://github.com/JCarty93">
+        <i>Jovan Carty
+            <a href="https://github.com/JCarty93">
                 <img src="assets/images/git.png" class="git">
-                </a>            
-                </i>
-            <i>Evgenia Semez
-                <a href="https://github.com/evgeniasemez">
+            </a>
+        </i>
+        <i>Evgenia Semez
+            <a href="https://github.com/evgeniasemez">
                 <img src="assets/images/git.png" class="git">
-                </a>
-                </i>
-            <i>Steven Mason
-                <a href="https://github.com/smason27">
+            </a>
+        </i>
+        <i>Steven Mason
+            <a href="https://github.com/smason27">
                 <img src="assets/images/git.png" class="git">
-                </a>
-                </i>
-            <i>Laura Baughman
-                <a href="https://github.com/lrlbaughman">
+            </a>
+        </i>
+        <i>Laura Baughman
+            <a href="https://github.com/lrlbaughman">
                 <img src="assets/images/git.png" class="git">
-                </a>
-                </i>
-        </div>
+            </a>
+        </i>
+    </div>
 
-        <script src="./assets/javascript/app.js "></script>
+    <script src="./assets/javascript/app.js "></script>
 </body>
 </div>
 

@@ -38,10 +38,10 @@ var savedRecipes = "/savedRecipes";
 
 
 
-database.ref(userSignIn).child("Evgenia").set({
-    userName: "Evgenia",
-    userPassword: "Test1234",
-});
+// database.ref(userSignIn).child("Evgenia").set({
+//     userName: "Evgenia",
+//     userPassword: "Test1234",
+// });
 
 
 $(document).ready(function () {
@@ -93,140 +93,92 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
+                console.log("search results");
 
                 // assume we have recipes to return
                 // or loop through 9 images i<10, because the carousel has 9 cards
                 for (var i = 0; i < response.results.length; i++) {
                     $(`#carousel${i}`).val("");
-                    var recipeTitle = response.results[i].title;
-                    var imgURL = response.results[i].image;;
-                    var button = $("<button>")
-                    button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + "Recipe")
-                    $(`#carousel${i}`).attr("src", imgURL).data(recipeTitle)
-                    $(`#recipe${i}`).append(button)
+                    // var recipeTitle = response.results[i].title;
+                    // var imgURL = response.results[i].image;
+                    var title = response.results[i].title;
+                    var calories = response.results[i].calories;
+                    var imgURL = response.results[i].image;
+                    // var button = $("<button>")
+                    // button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + "Recipe")
+                    $(`#buttonSave${i}`).attr("src", imgURL);
+                    $(`#buttonSave${i}`).attr("Title", title);
+                    $(`#buttonSave${i}`).attr("Calories", calories);
+                    $(`#buttonSave${i}`).show();
+
+                    // $(`#carousel${i}`).attr("src", imgURL).data(recipeTitle)
+                    // $(`#recipe${i}`).append(button)
+
+                    $(`#carousel${i}`).attr("src", imgURL);
+                    $(`#foodtitle${i}`).text(title);
+                    $(`#calories${i}`).text(calories + " calories");
                 }
 
-                document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
-                console.log(document.cookie);
-
-
-                // String.prototype.escapeSpecialChars = function() {
-                //     return this.replace(/\\n/g, "\\n")
-                //                .replace(/\\'/g, "\\'")
-                //                .replace(/\\"/g, '\\"')
-                //                .replace(/\\&/g, "\\&")
-                //                .replace(/\\r/g, "\\r")
-                //                .replace(/\\t/g, "\\t")
-                //                .replace(/\\b/g, "\\b")
-                //                .replace(/\\f/g, "\\f");
-                // };
-
-                var saveCookie = (document.cookie.split(";").filter(function (item) {
-                    return item.trim().indexOf('recipeName=') == 0
-                }));
-
-                if (nameCookie.length) {
-                    // nameCookie[0].substring();
-                    $(".saveButton").empty();
-                    $(".saveButton").html("Saved");
-                }
-
-                $(".saveButton").on("click", function (event) {
-                    recipeTitle = $(this).attr("data-name"),
-                        recipeImg = $(this).attr("src");
-
-                    checkUser();
-
-
-                    database.ref("userSignIn/" + userName + "/recipes/").push({
-                        recipeTitleData: recipeTitle,
-                        recipeImgData: recipeImg
-                    });
-
-                    // recipe = JSON.stringify(recipe);
-
-                    // console.log(recipe)
-                    // // console.log(savedRecipe);
-                    // // console.log(savedImg);
-
-                    // document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
-                    // console.log(document.cookie);
-
-                    // checkUser();
-                })
-
-                database.ref("userSignIn/" + userName + "/recipes/").on("child_added", function (snapshot) {
-                    var snap = snapshot.val();
-                    console.log(snap)
-                    var savedImg = snap.recipeImgData
-                    console.log(savedImg)
-                    var savedRecipe = snap.recipeTitleData
-
-
-//                     var saveDiv = $("<div>");
-//                     var recipeImg = $("<img>");
-//                     recipeImg.attr("src", savedImg);
-//                     recipeImg.addClass("myRecipes");
-//                     var recipeName = $("<h2>");
-//                     recipeName.text(savedRecipe);
-//                     saveDiv.append(recipeImg).append(recipeName);
-//                     $(".containerDiv").append(saveDiv);
-//                     $(".savedRecipe").prepend(savedRecipe)
-
-                    // for (var j = 0; j < response.results.length; j++) {
-                    //     var button = $("<button>")
-                    //     button.attr("data-name", recipeTitle).html("save" + recipeTitle);
-                    //     $(".carousel-item").append(button)
-                })
 
 
 
-
-                // for(var j = 0; j < response.results.length; j++)
-                // var rectipeTitle = response.resilts[i].title;
-                // var button = $("<button>");
-                // button.addclass("saveButton").attr("data-name", recipeTitle).html("save" + recipeTitle);
-                // $(".carousel-item").append(button)
-
-                var title = response.results[i].title;
-                var calories = response.results[i].calories;
-                var imgURL = response.results[i].image;
-
-                $(`#carousel${i}`).attr("src", imgURL);
-                $(`#foodtitle${i}`).text(title);
-                $(`#calories${i}`).text(calories + " calories");
-
-                // }
-
-
-
-                // second way of doing a carousel 
-                // $("#firstCarousel").empty();
-                // $("#recipesSearch").val("");
-                // $("#ingredientsSearch").val("");
-                // $("#caloriesInput").val("");
-                // for (var i = 0; i < response.results.length; i++) {
-                //     // $(`#carousel${i}`).val("");
-                //     // // var title = response.results[i].title;
-                //     var imgURL = response.results[i].image;
-                //     console.log(imgURL);
-                //     // $(`#carousel${i}`).attr("src", imgURL);
-                //     // if this the first thing in the loop add class active
-                //     var carouselItem = $("<div>");
-                //     if(i === 0){
-                //         carouselItem.attr("class", "active");
-                //     }
-                //     // var carouselItem = $("<div>");
-                //     carouselItem.attr("class", "carousel-item");
-                //     var image = $("<img>");
-                //     image.attr("src", imgURL);
-                //     carouselItem.append(image);
-                //     $("#firstCarousel").append(carouselItem);
-                // }
+                // var saveCookie = (document.cookie.split(";").filter(function (item) {
+                //     return item.trim().indexOf('recipeName=') == 0
+                // }));
 
             });
         }
         display();
+    });
+
+    database.ref("userSignIn/" + userName + "/recipes/").on("child_added", function (snapshot) {
+        var snap = snapshot.val();
+        console.log(snap)
+        var savedImg = snap.recipeImgData
+        console.log(savedImg)
+        var savedRecipe = snap.recipeTitleData;
+        var caloriesData = snap.caloriesData;
+        console.log(caloriesData);
+
+        // $(".savedRecipe").prepend(savedRecipe)
+        // <div class="card savedRecipe">
+        //     <!-- <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe"> -->
+        //                         <div class="card-body">
+        //             <p class="card-text">Recipe Name</p>
+        //         </div>
+        //                     </div>
+        var card = $("<div>");
+        card.addClass("card savedRecipe");
+        var cardImg = $("<img>");
+        cardImg.attr("src", savedImg);
+        cardImg.addClass("card-img-top");
+        cardImg.attr("alt", savedRecipe);
+        var cardBody = $("<div>");
+        cardBody.addClass("card-body");
+        cardBody.html(`<p class="card-text">${savedRecipe}</p>`);
+        card.append(cardImg);
+        card.append(cardBody);
+        $("#savedItems").append(card);
+    
+    })
+
+    $(".saveButton").on("click", function () {
+        if (isLoggedIn()) {
+            var title = $(this).attr("title");
+            var imgURL = $(this).attr("src");
+            var calories = $(this).attr("calories");
+
+            console.log("save button");
+            database.ref("userSignIn/" + userName + "/recipes/").push({
+                recipeTitleData: title,
+                recipeImgData: imgURL,
+                caloriesData: calories
+            });
+        }
+        else {
+            $("#loginModal").modal("show");
+        }
+        // $("#loginModal").modal("show");
     });
 
     // Second API call
@@ -238,7 +190,7 @@ $(document).ready(function () {
         console.log(queryURL2);
 
 
-        //Creating an AJAX call 
+        //Creating an AJAX call
         $.ajax({
             url: queryURL2,
             method: "GET",
@@ -252,29 +204,42 @@ $(document).ready(function () {
                 var readyInMinutes = response.recipes[i].readyInMinutes;
                 var titleRandom = response.recipes[i].title;
                 var imgURL2 = response.recipes[i].image;
-                var buttonRandom = $("<button>")
-                buttonRandom.attr("data-name", titleRandom).attr("src", imgURL2).addClass("saveButton").html("Save " + "Recipe")
+                // var buttonRandom = $("<button>")
+                // buttonRandom.attr("data-name", titleRandom).addClass("saveButton").html("Save " + "Recipe")
                 console.log(imgURL2);
                 $(`#carousel${i}`).attr("src", imgURL2);
                 $(`#foodtitle${i}`).text(titleRandom);
                 $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
+
+
+                // $(`#recipe${i}`).append(buttonRandom)
+                $(`#buttonSave${i}`).hide();
+            }
         });
     }
     secondAPI();
 
 
-
     var nameCookie = (document.cookie.split(";").filter(function (item) {
         return item.trim().indexOf('name=') == 0
     }));
+
+    function isLoggedIn() {
+        var Cookie = (document.cookie.split(";").filter(function (item) {
+            return item.trim().indexOf('name=') == 0
+        }));
+        return Cookie.length !== 0;
+
+    }
+
     if (nameCookie === "") {
         secondAPI();
     }
 
-    if (nameCookie.length) {
+    if (isLoggedIn()) {
         $("#signInButton").hide();
         $("#helloName").show();
-        $("#helloUserName").text(nameCookie[0].substring(5));
+        $("#helloUserName").text(nameCookie[0].trim().substring(5));
 
     }
 
@@ -326,23 +291,6 @@ $(document).ready(function () {
 
 
     });
-
-    function checkUser() {
-        var user = database.ref(userSignIn)
-        var name = user.child(userName)
-        console.log(name);
-        if (!name) {
-            console.log("please make account")
-            var accountDiv = $("<div>");
-            var makeAccount = $("<p>")
-            makeAccount.text("Please Create Account")
-            accountDiv.append(makeAccount);
-            $("#loginModal").modal("show");
-            $(".modal-body").prepend(accountDiv);
-        }
-        return;
-
-
 
 $(document).ready(function () {
     $(window).scroll(function () {
@@ -430,9 +378,9 @@ function createMarker(place) {
 }
 
 
-// var map;
-// var service;
-// var infowindow;
+        // var map;
+        // var service;
+        // var infowindow;
 
 // function initialize() {
 //   var pyrmont = new google.maps.LatLng(47.6062, -122.335167);
