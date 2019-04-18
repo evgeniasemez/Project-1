@@ -9,6 +9,10 @@ var config = {
 };
 
 firebase.initializeApp(config);
+function initApp() {
+    firebase.auth().onAuthStateChanged(function(user) 
+}
+
 // setting Firebase database
 var database = firebase.database();
 
@@ -16,7 +20,7 @@ var userSignIn = "/userSignIn";
 var userName = "Evgenia";
 // database.ref(userSignIn).child(userName).set({
 //     userName: "Evgenia",
-//     userPassword: "Test1234",
+//     userPassword: "1234Test",
 // });
 var recipeTitle = "";
 var recipeImg = "";
@@ -60,7 +64,7 @@ $(document).ready(function () {
         if (maxCalories !== "") {
             caloriesQueryParam = "&maxCalories=" + maxCalories;
         } else {
-            caloriesQueryParam = "";
+            caloriesQueryParam = "2000";
         }
         if (recipestitleQuery !== "") {
             recipesQueryParam = "query=" + recipestitleQuery;
@@ -115,7 +119,7 @@ $(document).ready(function () {
                     $(`#calories${i}`).text(calories + " calories");
                 }
 
-                // document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
+
 
 
                 // var saveCookie = (document.cookie.split(";").filter(function (item) {
@@ -207,10 +211,10 @@ $(document).ready(function () {
                 $(`#foodtitle${i}`).text(titleRandom);
                 $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
 
+
                 // $(`#recipe${i}`).append(buttonRandom)
                 $(`#buttonSave${i}`).hide();
             }
-
         });
     }
     secondAPI();
@@ -247,6 +251,11 @@ $(document).ready(function () {
         secondAPI();
     });
 
+    // $("#helloName").on("click", function () {
+    //     window.location.href = 
+
+    // })
+
     // document.cookie = "name=" + "userName" + ";expires =" + new Date().toUTCString();
     $("#submitButtonEmail").on("click", function (event) {
         var userName = $("#exampleInputEmail1").val().trim();
@@ -255,8 +264,8 @@ $(document).ready(function () {
         var user = database.ref(userSignIn);
         var name = user.child(userName);
 
-        name.once("value", function (data) {
-            console.log(data);
+        name.once("value", function () {
+            console.log(name);
             if (!data.exists()) {
                 // d
                 $("#exampleInputPassword1").val("");
@@ -283,31 +292,6 @@ $(document).ready(function () {
 
     });
 
-
-    // function checkUser(data) {
-    //     var user = database.ref(userSignIn)
-    //     var name = user.child(userName)
-
-    //     name.once("value", function (data) {
-    //         console.log(data);
-    //         if (!data.exists()) {
-    //             console.log(null)
-    //             var accountDiv = $("<div>");
-    //             var makeAccount = $("<h2>")
-    //             makeAccount.text("Please Create Account")
-    //             accountDiv.append(makeAccount);
-    //             $("#loginModal").show();
-    //             $("#loginModal").prepend(accountDiv);
-    //         } else {
-    //             loadData();
-    //         }
-    //     })
-
-    // }
-});
-
-// footer with the GitHub links
-
 $(document).ready(function () {
     $(window).scroll(function () {
         $(".card-fill").each(function (i) {
@@ -321,27 +305,32 @@ $(document).ready(function () {
     });
 });
 
-// $(function () {
-//     $(".myRecipes").draggable({
-//         revert: "invalid",
-//         helper: "clone",
-//         zindex: 10000
-//     });
+$(function () {
+    $(".card").draggable({
+        // stack: $(this),
+        containment: "document",
+        revert: "invalid",
+        helper: "clone",
+        zindex: 100
+    });
 
-//     $("#breakfast #lunch #dinner").droppable({
-//         accept: ".myRecipes",
-//         tolerance: 'pointer',
-//         greedy: true,
-//         hoverClass: 'highlight',
-//         drop: function (ev, ui) {
-//             $(ui.draggable).clone(true).detach().css({
-//                 position: 'relative',
-//                 top: 'auto',
-//                 left: 'auto'
-//             }).appendTo(this);
-//         }
-//     });
-// })
+    $("#breakfastCard, #lunchCard, #dinnerCard").droppable({
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        accept: ":not(.ui-sortable-helper)",
+        // accept: ".card",
+        tolerance: 'pointer',
+        greedy: true,
+        drop: function (ev, ui) {
+            $(this).empty();
+            $(ui.draggable).clone(true).detach().css({
+                position: 'relative',
+                top: 'auto',
+                left: 'auto'
+            }).appendTo(this);
+        }
+    });
+})
 //
 //
 // MAPS API

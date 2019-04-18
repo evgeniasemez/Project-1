@@ -23,6 +23,7 @@
 
 <body>
 
+
     <div class="testvh">
         <nav class="navbar navbar-light bg-light">
             <h1 class="display-4">Search for Recipes</h1>
@@ -36,10 +37,16 @@
                             <form class="form-inline my-2 my-lg-0 calorie-search" id="caloriesSearch" style="float:left">
                                 <input class="form-control mr-sm-2" id="caloriesInput" type="search" placeholder="Calories" aria-label="Search" disabled>
                             </form> -->
+
                 <a href="./index.html#testvh"> <button type="button" class="btn btn-success search" id="buttonSearch profileSearch"
                         style="float:left;">Search</button>
                 </a>
         </nav>
+    </div>
+
+
+    <div class="containerDiv">
+    
     </div>
 
     <div class="container">
@@ -48,6 +55,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Saved Recipes</h5>
                     <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+
+
 
 
                     <div class="row savedRow">
@@ -73,28 +82,6 @@
                         </div>
                     </div>
 
-                    <div class="row savedRow">
-                        <div class="card-deck">
-                            <div class="card savedRecipe">
-                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                                <div class="card-body">
-                                    <p class="card-text">Recipe Name</p>
-                                </div>
-                            </div>
-                            <div class="card savedRecipe">
-                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                                <div class="card-body">
-                                    <p class="card-text">Recipe Name</p>
-                                </div>
-                            </div>
-                            <div class="card savedRecipe">
-                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
-                                <div class="card-body">
-                                    <p class="card-text">Recipe Name</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row savedRow">
                         <div class="card-deck">
@@ -118,6 +105,31 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="row savedRow">
+                        <div class="card-deck">
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                            <div class="card savedRecipe">
+                                <img src="assets/images/blue.jpg" class="card-img-top" alt="Saved Recipe">
+                                <div class="card-body">
+                                    <p class="card-text">Recipe Name</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="row savedRow">
                         <div class="card-deck">
@@ -164,6 +176,12 @@
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                 </div>
+
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body mealCard" id="breakfastCard"> 
+                                <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's breakfast.</p>
+
                             </div>
                             <div class="col-md-7">
                                 <div class="card-body">
@@ -191,6 +209,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-7">
+                            <div class="card-body mealCard" id="lunchCard">
+                                <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's lunch.</p>
+                        </div>
+                        </div>
+                    </div>
+
                     </div>
 
                     <div class="card mb-3 text-white" style="max-width: 540px; max-height: 300px;" id="dinnerDiv">
@@ -210,6 +236,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-7">
+                        <div class="card-body mealCard" id="dinnerCard"> 
+                            <p class="card-text text-muted small">Drag and drop a saved recipe here to add to today's dinner.</p>
+                        </div>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
             </div>
