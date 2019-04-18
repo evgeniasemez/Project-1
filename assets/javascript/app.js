@@ -38,6 +38,10 @@ var savedRecipes = "/savedRecipes";
 
 
 
+database.ref(userSignIn).child("Evgenia").set({
+    userName: "Evgenia",
+    userPassword: "Test1234",
+});
 
 
 $(document).ready(function () {
@@ -89,11 +93,6 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
-                // 1. clear all the carousel
-                // 2. looking how many images we have
-                // 3. put the images in the slideshow
-                // 4. i always want at least 10 images, if  i don't have 10 results, i want to keep some the previous going with the new ones
-                // if i get more than 10 - i want to add them 
 
                 // assume we have recipes to return
                 // or loop through 9 images i<10, because the carousel has 9 cards
@@ -135,7 +134,10 @@ $(document).ready(function () {
                 $(".saveButton").on("click", function (event) {
                     recipeTitle = $(this).attr("data-name"),
                         recipeImg = $(this).attr("src");
+
                     checkUser();
+
+
                     database.ref("userSignIn/" + userName + "/recipes/").push({
                         recipeTitleData: recipeTitle,
                         recipeImgData: recipeImg
@@ -160,14 +162,16 @@ $(document).ready(function () {
                     console.log(savedImg)
                     var savedRecipe = snap.recipeTitleData
 
-                    var saveDiv = $("<div>");
-                    var recipeImg = $("<img>");
-                    recipeImg.attr("src", savedImg);
-                    recipeImg.addClass("myRecipes");
-                    var recipeName = $("<h2>");
-                    recipeName.text(savedRecipe);
-                    saveDiv.append(recipeImg).append(recipeName);
-                    $(".containerDiv").append(saveDiv);
+
+//                     var saveDiv = $("<div>");
+//                     var recipeImg = $("<img>");
+//                     recipeImg.attr("src", savedImg);
+//                     recipeImg.addClass("myRecipes");
+//                     var recipeName = $("<h2>");
+//                     recipeName.text(savedRecipe);
+//                     saveDiv.append(recipeImg).append(recipeName);
+//                     $(".containerDiv").append(saveDiv);
+//                     $(".savedRecipe").prepend(savedRecipe)
 
                     // for (var j = 0; j < response.results.length; j++) {
                     //     var button = $("<button>")
@@ -245,7 +249,6 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
             for (var i = 0; i < response.recipes.length; i++) {
-                // $(`#carousel${i}`).val("");
                 var readyInMinutes = response.recipes[i].readyInMinutes;
                 var titleRandom = response.recipes[i].title;
                 var imgURL2 = response.recipes[i].image;
@@ -255,11 +258,6 @@ $(document).ready(function () {
                 $(`#carousel${i}`).attr("src", imgURL2);
                 $(`#foodtitle${i}`).text(titleRandom);
                 $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
-                $(`#recipes${i}`).append(buttonRandom)
-
-            }
-
-            // $(`#recipes${i}`).append(buttonRandom)
         });
     }
     secondAPI();
@@ -274,7 +272,6 @@ $(document).ready(function () {
     }
 
     if (nameCookie.length) {
-        // nameCookie[0].substring();
         $("#signInButton").hide();
         $("#helloName").show();
         $("#helloUserName").text(nameCookie[0].substring(5));
@@ -345,8 +342,6 @@ $(document).ready(function () {
         }
         return;
 
-    }
-});
 
 
 $(document).ready(function () {
