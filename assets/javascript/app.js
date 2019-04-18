@@ -34,6 +34,10 @@ var savedRecipes = "/savedRecipes";
 
 
 
+database.ref(userSignIn).child("Evgenia").set({
+    userName: "Evgenia",
+    userPassword: "Test1234",
+});
 
 
 $(document).ready(function () {
@@ -85,18 +89,13 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
-                // 1. clear all the carousel
-                // 2. looking how many images we have
-                // 3. put the images in the slideshow
-                // 4. i always want at least 10 images, if  i don't have 10 results, i want to keep some the previous going with the new ones
-                // if i get more than 10 - i want to add them 
 
                 // assume we have recipes to return
                 // or loop through 9 images i<10, because the carousel has 9 cards
                 for (var i = 0; i < response.results.length; i++) {
                     $(`#carousel${i}`).val("");
                     var recipeTitle = response.results[i].title;
-                    var imgURL = response.results[i].image;;              
+                    var imgURL = response.results[i].image;;
                     var button = $("<button>")
                     button.attr("data-name", recipeTitle).attr("src", imgURL).addClass("saveButton").html("Save " + "Recipe")
                     $(`#carousel${i}`).attr("src", imgURL).data(recipeTitle)
@@ -104,7 +103,7 @@ $(document).ready(function () {
                 }
 
                 document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
-            console.log(document.cookie);
+                console.log(document.cookie);
 
 
                 // String.prototype.escapeSpecialChars = function() {
@@ -128,24 +127,24 @@ $(document).ready(function () {
                     $(".saveButton").html("Saved");
                 }
 
-                $(".saveButton").on("click", function(event) {
+                $(".saveButton").on("click", function (event) {
                     recipeTitle = $(this).attr("data-name"),
-                    recipeImg = $(this).attr("src");
+                        recipeImg = $(this).attr("src");
 
                     database.ref("userSignIn/" + userName + "/recipes/").push({
                         recipeTitleData: recipeTitle,
                         recipeImgData: recipeImg
                     });
-                
+
                     // recipe = JSON.stringify(recipe);
-                                    
+
                     // console.log(recipe)
                     // // console.log(savedRecipe);
                     // // console.log(savedImg);
-                   
+
                     // document.cookie = "recipeName=" + recipeTitle + ";expires =" + new Date(moment().add(30, "minutes").toDate());
                     // console.log(document.cookie);
-                    
+
                     // checkUser();
                 })
 
@@ -158,10 +157,10 @@ $(document).ready(function () {
 
                     $(".savedRecipe").prepend(savedRecipe)
 
-                // for (var j = 0; j < response.results.length; j++) {
-                //     var button = $("<button>")
-                //     button.attr("data-name", recipeTitle).html("save" + recipeTitle);
-                //     $(".carousel-item").append(button)
+                    // for (var j = 0; j < response.results.length; j++) {
+                    //     var button = $("<button>")
+                    //     button.attr("data-name", recipeTitle).html("save" + recipeTitle);
+                    //     $(".carousel-item").append(button)
                 })
 
 
@@ -173,13 +172,13 @@ $(document).ready(function () {
                 // button.addclass("saveButton").attr("data-name", recipeTitle).html("save" + recipeTitle);
                 // $(".carousel-item").append(button)
 
-                    var title = response.results[i].title;
-                    var calories = response.results[i].calories;
-                    var imgURL = response.results[i].image;
-                    
-                    $(`#carousel${i}`).attr("src", imgURL);
-                    $(`#foodtitle${i}`).text(title);
-                    $(`#calories${i}`).text(calories + " calories");
+                var title = response.results[i].title;
+                var calories = response.results[i].calories;
+                var imgURL = response.results[i].image;
+
+                $(`#carousel${i}`).attr("src", imgURL);
+                $(`#foodtitle${i}`).text(title);
+                $(`#calories${i}`).text(calories + " calories");
 
                 // }
 
@@ -234,26 +233,25 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
             for (var i = 0; i < response.recipes.length; i++) {
-                // $(`#carousel${i}`).val("");
                 var readyInMinutes = response.recipes[i].readyInMinutes;
                 var titleRandom = response.recipes[i].title;
                 var imgURL2 = response.recipes[i].image;
                 var buttonRandom = $("<button>")
-                    buttonRandom.attr("data-name", titleRandom).attr("src", imgURL2).addClass("saveButton").html("Save " + "Recipe")
+                buttonRandom.attr("data-name", titleRandom).attr("src", imgURL2).addClass("saveButton").html("Save " + "Recipe")
                 console.log(imgURL2);
                 $(`#carousel${i}`).attr("src", imgURL2);
                 $(`#foodtitle${i}`).text(titleRandom);
                 $(`#calories${i}`).text("Ready in " + readyInMinutes + " minutes");
-           
+
 
             }
 
-                $(`#recipes${i}`).append(buttonRandom)
+            $(`#recipes${i}`).append(buttonRandom)
         });
     }
     secondAPI();
 
-   
+
 
     var nameCookie = (document.cookie.split(";").filter(function (item) {
         return item.trim().indexOf('name=') == 0
@@ -263,7 +261,6 @@ $(document).ready(function () {
     }
 
     if (nameCookie.length) {
-        // nameCookie[0].substring();
         $("#signInButton").hide();
         $("#helloName").show();
         $("#helloUserName").text(nameCookie[0].substring(5));
@@ -320,7 +317,7 @@ $(document).ready(function () {
 
         name.once("value", function (data) {
             console.log(data);
-            if(!data.exists()) {
+            if (!data.exists()) {
                 console.log(null)
                 var accountDiv = $("<div>");
                 var makeAccount = $("<h2>")
@@ -331,110 +328,12 @@ $(document).ready(function () {
             } else {
                 loadData();
             }
-        })        
-        
+        })
+
     }
 });
 
-// var domainStr = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?"
-// var mashupKey = "mashape-key=68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
-
-// var domainWIthKey = domainStr + mashupKey;
-
-// var cuisine = "cuisine=french"
-// var limitLicence = "limitLicence=true"
-// var searchNumber = "number=10"
-
-// var apiString = `${domainWithKey}&${cuisine}&${limitLicence}&${searchNumber}`
-
-
-// function searchRecipes() {
-//     // VARIABLE TO STORE USER RECIPE
-//     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=16&query=goulash"
-
-//     console.log(queryUrl)
-
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET",
-//         headers: {
-//             "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//             "X-RapidAPI-Key": "68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
-//         },
-//         success: function (response) {
-
-//             console.log(response);
-//             for (var i = 0; i < response.results.length; i++) {
-//                 var searchRecipes = response.results[i].title;
-//                 var recipeImage = response.results[i].image;
-//                 var recipeCookTime = response.results[i].readyInMinutes;
-//                 var recipeServings = response.results[i].servings;
-//             }
-//         },
-//         error: function (result) {
-
-//         }
-//     })
-// }
-
-// function searchIngredients() {
-//     // VARIABLE TO STORE USER INGREDIENTS
-//     var queryUrl =  "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=16&ranking=1&ignorePantry=true&ingredients=cheese" 
-
-//     console.log(queryUrl)
-
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET",
-//         headers: {
-//             "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//             "X-RapidAPI-Key": "68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
-//         },
-//         success: function (response) {
-
-
-//             console.log(response);
-//             for (var i = 0; i < response.length; i++) {
-//                 var ingredientsRecipes = response[i].title;
-//                 var numberIngredientsMissed = response[i].missedIngredientCount;
-//                 // console.log(ingredientsRecipes)
-//                 var ingredientsImage = response[i].image;
-//                 for (var j = 0; j < response[i].missedIngredients.length; j++) {
-//                     var ingredientsMissing = response[i].missedIngredients[j].name;
-//                     // console.log(ingredientsMissing)
-//                 }
-//                 for( var h = 0; h < response[i].missedIngredients.length; h++) {
-//                     var ingredientAisle = response[i].missedIngredients[h].aisle;
-//                     // console.log(ingredientAisle)
-//                 }
-//             }
-//         },
-//         error: function (result) {
-
-//         }
-//     })
-// }
-
-// function mealPlan() {
-//     // VARIABLES FOR USER MEAL PLAN INPUT
-//     var queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=week&targetCalories=2000&diet=&exclude="
-
-//     $.ajax({
-//         url: queryUrl,
-//         method: "GET",
-//         headers: {
-//             "X-RapidAPI-Host":"spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//             "X-RapidAPI-Key": "68365c6307msh33db7251321fad9p1ae0e9jsn68b66fe6fc3f"
-//         },
-//         success: function(response) {
-//             console.log(response);
-//         }
-//     })
-// }
-
-// searchRecipes();
-// searchIngredients();
-// mealPlan();
+// footer with the GitHub links
 
 $(document).ready(function () {
     $(window).scroll(function () {
@@ -478,42 +377,42 @@ var service;
 var infowindow;
 
 function initMap() {
-  var seattle = new google.maps.LatLng(47.6062, -122.335167);
+    var seattle = new google.maps.LatLng(47.6062, -122.335167);
 
-  infowindow = new google.maps.InfoWindow();
+    infowindow = new google.maps.InfoWindow();
 
-  map = new google.maps.Map(
-      document.getElementById('map'), {center: seattle, zoom: 15});
+    map = new google.maps.Map(
+        document.getElementById('map'), { center: seattle, zoom: 15 });
 
-      var request = {
+    var request = {
         location: seattle,
         // radius: '500',
         query: 'food'
-      };
+    };
 
-  service = new google.maps.places.PlacesService(map);
+    service = new google.maps.places.PlacesService(map);
 
-  service.findPlaceFromQuery(request, function(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
+    service.findPlaceFromQuery(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
 
-      map.setCenter(results[0].geometry.location);
-    }
-  });
+            map.setCenter(results[0].geometry.location);
+        }
+    });
 }
 
 function createMarker(place) {
-  var marker = new google.maps.Marker({
-    map: map,
-    position: place.geometry.location
-  });
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
 
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
-  });
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
 }
 
 
